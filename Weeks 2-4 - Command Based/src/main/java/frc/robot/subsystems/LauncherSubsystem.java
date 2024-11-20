@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -83,8 +85,28 @@ public class LauncherSubsystem extends SubsystemBase {
         );
     }
 
+    public double getFlywheelRPM(){
+        return encoder.getVelocityRPM();
+    }
+
+    
+
+    public Command getPIDCommand(double targetRPM){
+        return new Command() {
+            PIDController pid = new PIDController(KP, KI, KD);
+            SimpleMotorFeedforward ff = new SimpleMotorFeedforward(0, KV);
+
+            @Override
+            public void execute() {
+                topMotor.setVoltage(ff.calculate(targetRPM) + pid.calculate(getFlywheelRPM()));
+            }
+            
+        };
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
     }
+
 }

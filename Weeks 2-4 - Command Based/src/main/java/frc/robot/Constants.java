@@ -20,6 +20,13 @@ public final class Constants {
   public static class LauncherConstants{
     public static final int TOP_ID = 3;
     public static final int BOTTOM_ID = 4;
+
+    public static final double KP = 0.0;
+    public static final double KI = 0.0;
+    public static final double KD = 0.0;
+    public static final double KV = 0.0;
+    
+    
   }
 
   public static class DrivetrainConstants{
