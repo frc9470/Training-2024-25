@@ -23,7 +23,7 @@ import static frc.robot.Constants.LauncherConstants.*;
  * 1. Intake - Both motors spin clockwise (negative voltage) to intake a game piece
  * 2. Launch - Motors spin counterclockwise (positive voltage) to launch the game piece
  */
-public class LauncherSubsystem extends SubsystemBase {
+public class ExampleLauncherSubsystem extends SubsystemBase {
   /** The top motor of the launcher mechanism */
   private final CANSparkMax top = new CANSparkMax(TOP_ID, CANSparkLowLevel.MotorType.kBrushed);
   /** The bottom motor of the launcher mechanism */
@@ -33,7 +33,7 @@ public class LauncherSubsystem extends SubsystemBase {
    * Creates a new LauncherSubsystem.
    * Initializes both motors with factory defaults and sets current limits.
    */
-  public LauncherSubsystem() {
+  public ExampleLauncherSubsystem() {
     top.restoreFactoryDefaults();
     top.setSmartCurrentLimit(80);
 

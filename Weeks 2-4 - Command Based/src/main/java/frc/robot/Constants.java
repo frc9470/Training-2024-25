@@ -21,4 +21,9 @@ public final class Constants {
     public static final int TOP_ID = 3;
     public static final int BOTTOM_ID = 4;
   }
+
+  public static class DrivetrainConstants{
+    public static final int LEFT_FRONT_ID = 1;
+    public static final int RIGHT_REAR_ID = 2;
+  }
 }

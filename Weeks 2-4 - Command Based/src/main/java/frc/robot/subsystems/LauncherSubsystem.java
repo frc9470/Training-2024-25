@@ -9,7 +9,6 @@ import com.revrobotics.CANSparkLowLevel;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 import static frc.robot.Constants.LauncherConstants.*;
 
