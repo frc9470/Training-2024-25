@@ -33,10 +33,12 @@ public class LauncherSubsystem extends SubsystemBase {
         // Configure top motor
         topMotor.restoreFactoryDefaults();
         topMotor.setSmartCurrentLimit(80);
+        topMotor.setInverted(true);
 
         // Configure bottom motor
         bottomMotor.restoreFactoryDefaults();
         bottomMotor.setSmartCurrentLimit(80);
+        bottomMotor.setInverted(true);
     
     }
     /**
@@ -76,7 +78,7 @@ public class LauncherSubsystem extends SubsystemBase {
             () -> topMotor.setVoltage(12.0),    // Spin up top motor
             () -> topMotor.setVoltage(0.0)      // By default, this end method never runs because we have no end condition. it only works with the timeout
         )
-        .withTimeout(1.0)                        // Wait for motor to reach speed
+        .withTimeout(2.0)                        // Wait for motor to reach speed
         .andThen(
             this.runEnd(
                 () -> setVoltage(12.0),         // Run both motors
@@ -85,24 +87,22 @@ public class LauncherSubsystem extends SubsystemBase {
         );
     }
 
-    public double getFlywheelRPM(){
-        return encoder.getVelocityRPM();
-    }
+    // public double getFlywheelRPM(){
+    //     return encoder.getVelocityRPM();
+    // }
 
-    
+    // public Command getPIDCommand(double targetRPM){
+    //     return new Command() {
+    //         PIDController pid = new PIDController(KP, KI, KD);
+    //         SimpleMotorFeedforward ff = new SimpleMotorFeedforward(0, KV);
 
-    public Command getPIDCommand(double targetRPM){
-        return new Command() {
-            PIDController pid = new PIDController(KP, KI, KD);
-            SimpleMotorFeedforward ff = new SimpleMotorFeedforward(0, KV);
-
-            @Override
-            public void execute() {
-                topMotor.setVoltage(ff.calculate(targetRPM) + pid.calculate(getFlywheelRPM()));
-            }
+    //         @Override
+    //         public void execute() {
+    //             topMotor.setVoltage(ff.calculate(targetRPM) + pid.calculate(getFlywheelRPM()));
+    //         }
             
-        };
-    }
+    //     };
+    // }
 
     @Override
     public void periodic() {
